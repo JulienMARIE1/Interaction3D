@@ -1,0 +1,10 @@
+﻿  Peripherique.cpp
+  Server.cpp
+  WiiMote.cpp
+  main.cpp
+  Génération de code en cours
+  35 of 132 functions (26.5%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    33 functions had inline decision re-evaluated but remain unchanged
+  Fin de la génération du code
+  serverWiimote.vcxproj -> C:\Users\Bravej\source\repos\serverWiimote\Release\serverWiimote.exe
