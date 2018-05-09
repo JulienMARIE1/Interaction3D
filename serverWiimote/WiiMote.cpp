@@ -10,7 +10,7 @@ void WiiMote::Event(SOCKET csock) {
 	if (IS_PRESSED(m_wm, WIIMOTE_BUTTON_A)) {
 		aPressed = 1;
 	}
-	str += std::to_string(aPressed) + ";" + std::to_string(m_wm->orient.a_roll) + ";" + std::to_string(m_wm->orient.a_pitch) + "\n";
+	str += std::to_string(aPressed) + ";" + std::to_string(m_wm->orient.a_roll) + ";" + std::to_string(m_wm->orient.a_pitch) + ";";
 	const char * sendValue = str.c_str();
 	std::cout << sendValue << std::endl;
 	send(csock, sendValue, str.size(), 0);
