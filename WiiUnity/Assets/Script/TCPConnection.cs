@@ -5,7 +5,6 @@ using System.IO;
 using System.Net.Sockets;
 
 public class TCPConnection : MonoBehaviour {
-
     //the name of the connection, not required but better for overview if you have more than 1 connections running
     public string conName = "Localhost";
 
@@ -24,26 +23,21 @@ public class TCPConnection : MonoBehaviour {
     StreamReader theReader;
 
     //try to initiate connection
-    public void setupSocket()
-    {
-        try
-        {
+    public void setupSocket() {
+        try {
             mySocket = new TcpClient(conHost, conPort);
             theStream = mySocket.GetStream();
             theWriter = new StreamWriter(theStream);
             theReader = new StreamReader(theStream);
             socketReady = true;
-        }
-        catch (Exception e)
-        {
+        } catch(Exception e) {
             Debug.Log("Socket error:" + e);
         }
     }
 
     //send message to server
-    public void writeSocket(string theLine)
-    {
-        if (!socketReady)
+    public void writeSocket(string theLine) {
+        if(!socketReady)
             return;
         String tmpString = theLine + "\r\n";
         theWriter.Write(tmpString);
@@ -51,11 +45,9 @@ public class TCPConnection : MonoBehaviour {
     }
 
     //read message from server
-    public string readSocket()
-    {
+    public string readSocket() {
         String result = "";
-        if (theStream.DataAvailable)
-        {
+        if(theStream.DataAvailable) {
             Byte[] inStream = new Byte[mySocket.SendBufferSize];
             theStream.Read(inStream, 0, inStream.Length);
             result += System.Text.Encoding.UTF8.GetString(inStream);
@@ -65,9 +57,8 @@ public class TCPConnection : MonoBehaviour {
     }
 
     //disconnect from the socket
-    public void closeSocket()
-    {
-        if (!socketReady)
+    public void closeSocket() {
+        if(!socketReady)
             return;
         theWriter.Close();
         theReader.Close();
@@ -76,12 +67,9 @@ public class TCPConnection : MonoBehaviour {
     }
 
     //keep connection alive, reconnect if connection lost
-    public void maintainConnection()
-    {
-        if (!theStream.CanRead)
-        {
+    public void maintainConnection() {
+        if(!theStream.CanRead) {
             setupSocket();
         }
     }
-
 }
